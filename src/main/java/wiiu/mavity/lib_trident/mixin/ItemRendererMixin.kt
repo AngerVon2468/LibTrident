@@ -22,59 +22,53 @@
  * SOFTWARE.
  */
 
-package wiiu.mavity.lib_trident.mixin;
 
-import wiiu.mavity.lib_trident.tag.LibTridentTags;
+package wiiu.mavity.lib_trident.mixin
 
-import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.item.*;
+import wiiu.mavity.lib_trident.util.*
 
-import org.spongepowered.asm.mixin.*;
-import org.spongepowered.asm.mixin.injection.At;
+import net.minecraft.client.render.item.ItemRenderer
+import net.minecraft.item.*
 
-import com.llamalad7.mixinextras.injector.wrapoperation.*;
+import org.spongepowered.asm.mixin.*
+import org.spongepowered.asm.mixin.injection.At
 
-@Mixin(ItemRenderer.class)
-public abstract class ItemRendererMixin {
+import com.llamalad7.mixinextras.injector.wrapoperation.*
 
-    @WrapOperation(
-		method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V",
-		at = @At(
+@Suppress("NonJavaMixin") // Avoid static stuff and you're fine.
+@Mixin(ItemRenderer::class)
+class ItemRendererMixin {
+
+	@WrapOperation(
+		method = ["renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V"],
+		at = [At(
 			value = "INVOKE",
 			target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z",
 			ordinal = 0
-		)
-    )
-    private boolean renderItemTrident0(ItemStack instance, Item item, Operation<Boolean> original) {
-        return isTrident(instance) || original.call(instance, item);
-    }
+		)]
+	)
+	private fun renderItemTrident0(instance: ItemStack, item: Item, original: Operation<Boolean>): Boolean =
+		instance.isTrident() || original.call(instance, item)
 
-    @WrapOperation(
-		method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V",
-		at = @At(
+	@WrapOperation(
+		method = ["renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V"],
+		at = [At(
 			value = "INVOKE",
 			target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z",
 			ordinal = 2
-		)
-    )
-    private boolean renderItemTrident2(ItemStack instance, Item item, Operation<Boolean> original) {
-        return isTrident(instance) || original.call(instance, item);
-    }
+		)]
+	)
+	private fun renderItemTrident2(instance: ItemStack, item: Item, original: Operation<Boolean>): Boolean =
+		instance.isTrident() || original.call(instance, item)
 
-    @WrapOperation(
-		method = "getModel",
-		at = @At(
+	@WrapOperation(
+		method = ["getModel"],
+		at = [At(
 			value = "INVOKE",
 			target = "Lnet/minecraft/item/ItemStack;isOf(Lnet/minecraft/item/Item;)Z",
 			ordinal = 0
-		)
-    )
-    private boolean getModelTrident(ItemStack instance, Item item, Operation<Boolean> original) {
-        return isTrident(instance) || original.call(instance, item);
-    }
-
-    @Unique
-    private boolean isTrident(ItemStack stack) {
-        return stack.isIn(LibTridentTags.TRIDENT);
-    }
+		)]
+	)
+	private fun getModelTrident(instance: ItemStack, item: Item, original: Operation<Boolean>): Boolean =
+		instance.isTrident() || original.call(instance, item)
 }

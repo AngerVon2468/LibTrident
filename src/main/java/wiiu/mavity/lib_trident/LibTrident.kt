@@ -6,6 +6,7 @@ import net.fabricmc.api.ModInitializer
 
 import org.slf4j.*
 
+//TODO: Provide API to allow custom render code for the Entity & custom models for in-hand rendering.
 object LibTrident : ModInitializer {
 
 	override fun onInitialize() {
