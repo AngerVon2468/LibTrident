@@ -1,0 +1,39 @@
+{
+	"schemaVersion": 1,
+	"id": "lib_trident",
+	"version": "${version}",
+	"name": "LibTrident",
+	"description": "What if you wanted to Trident, but Mojank said: \"You need a stupid amount of Mixins for that!\"\nAll credit to OroArmor for creating the ItemRendererMixin; I couldn't have done that myself (well) from scratch, so thanks a million!",
+	"authors": [
+		"Mavity The Madity"
+	],
+	"contributors": [
+		"OroArmor",
+		"Roadhog360"
+	],
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			{
+				"adapter": "kotlin",
+				"value": "wiiu.mavity.lib_trident.LibTrident"
+			}
+		],
+		"client": [
+			{
+				"adapter": "kotlin",
+				"value": "wiiu.mavity.lib_trident.LibTridentClient"
+			}
+		]
+	},
+	"mixins": [
+		"lib_trident.mixins.json"
+	],
+	"depends": {
+		"fabricloader": "*",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*",
+		"fabric-language-kotlin": "*"
+	}
+}
