@@ -13,5 +13,5 @@ object LibTridentTags {
 		LibTrident.LOGGER.info("Registering Tags for LibTrident!")
 	}
 
-	@JvmField val TRIDENT: TagKey<Item> = TagKey.of(RegistryKeys.ITEM, Identifier(LibTrident.MOD_ID, "trident"))
+	@JvmField val TRIDENTS: TagKey<Item> = TagKey.of(RegistryKeys.ITEM, Identifier(LibTrident.MOD_ID, "tridents"))
 }

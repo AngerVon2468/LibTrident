@@ -7,4 +7,4 @@ import wiiu.mavity.lib_trident.tag.LibTridentTags
 
 operator fun TagKey<Item>.contains(stack: ItemStack): Boolean = stack.isIn(this)
 
-fun ItemStack.isTrident(): Boolean = this in LibTridentTags.TRIDENT
+fun ItemStack.isTrident(): Boolean = this in LibTridentTags.TRIDENTS
