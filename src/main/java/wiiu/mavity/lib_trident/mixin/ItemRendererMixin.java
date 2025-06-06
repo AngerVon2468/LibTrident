@@ -34,6 +34,10 @@ import com.llamalad7.mixinextras.injector.wrapoperation.*;
 
 import static wiiu.mavity.lib_trident.util.UtilKt.isTrident;
 
+/**
+ * Repurposed Mixin from "Multi Item Lib", check it out at <a href="https://github.com/OroArmorModding/Multi-Item-Lib/">this repo</a>
+ * (Specifically <a href="https://github.com/OroArmorModding/Multi-Item-Lib/blob/master/src/main/java/com/oroarmor/multiitemlib/mixin/render/ItemRendererMixin.java">this file</a>)
+ */
 @Mixin(ItemRenderer.class)
 public abstract class ItemRendererMixin {
 
