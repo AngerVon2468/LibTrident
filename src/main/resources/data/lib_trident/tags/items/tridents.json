@@ -1,6 +1,10 @@
 {
 	"replace": false,
 	"values": [
-		"minecraft:trident"
+		"minecraft:trident",
+		{
+			"id": "trident_lib:test_trident",
+			"required": false
+		}
 	]
 }
